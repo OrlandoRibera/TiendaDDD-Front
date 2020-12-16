@@ -1,0 +1,85 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light mb-5">
+  <div class="container">
+    <a class="navbar-brand" [routerLink]="[ '/']">Closure</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+      aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            Soporte
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <a class="dropdown-item" [routerLink]="[ '/cliente' ]">Clientes</a>
+            <a class="dropdown-item" [routerLink]="[ '/tecnico' ]">Técnicos</a>
+            <a class="dropdown-item" [routerLink]="[ '/producto' ]">Productos</a>
+            <a class="dropdown-item" [routerLink]="[ '/' ]">Órdenes de Servicio</a>
+            <a class="dropdown-item" [routerLink]="[ '/cita' ]">Citas</a>
+            <a class="dropdown-item" [routerLink]="[ '/form-trabajo' ]">Formularios</a>
+          </div>
+        </li>
+        <li class="nav-item ">
+          <a class="nav-link" [routerLink]="[ '/orden-entregas' ]">Distribución</a>
+        </li>
+      </ul>
+    </div>
+    <div class="navbar-text">
+      <button type="button" *ngIf="!userEmailLogged" class="nav-link btn-link btn" data-toggle="modal"
+        data-target="#loginModal">
+        Iniciar Sesión
+      </button>
+      <div *ngIf="userEmailLogged" class="d-flex justify-content-around">
+        <span class="nav-link">{{userEmailLogged}}</span>
+        <button (click)="logout()" class="btn btn-link">Salir</button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- Modal -->
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="loginModalLabel">Iniciar Sesión</h5>
+      </div>
+      <div class="modal-body">
+        <form class="login-form">
+          <mat-form-field class="login-full-width">
+            <mat-label>Email</mat-label>
+            <input type="email" matInput [formControl]="emailFormControl" placeholder="Ej. joseca@example.com"
+              [(ngModel)]="email">
+            <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+              Por favor ingrese un correo electrónico válido
+            </mat-error>
+            <mat-error *ngIf="emailFormControl.hasError('required')">
+              El correo electrónico es <strong>requerido</strong>
+            </mat-error>
+          </mat-form-field>
+          <br>
+          <mat-form-field class="login-full-width mb-3">
+            <mat-label>Password</mat-label>
+            <input type="password" matInput [formControl]="passwordFormControl" placeholder="Su contraseña"
+              [(ngModel)]="password">
+            <mat-error *ngIf="!passwordFormControl.hasError('minLength') && !passwordFormControl.hasError('required')">
+              La contraseña debe ser mayor a 8 caracteres
+            </mat-error>
+            <mat-error *ngIf="passwordFormControl.hasError('required')">
+              La contraseña es <strong>requerida</strong>
+            </mat-error>
+          </mat-form-field>
+        </form>
+      </div>
+      <div class="modal-footer d-flex justify-content-center">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+        <button (click)="login()" type="button" class="btn btn-success"
+          [ngClass]="{'disabled': passwordFormControl.hasError('minLength') && passwordFormControl.hasError('required')}">Iniciar
+          Sesión</button>
+      </div>
+    </div>
+  </div>
+</div>

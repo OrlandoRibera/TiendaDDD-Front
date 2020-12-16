@@ -1,0 +1,101 @@
+<app-header></app-header>
+<div class="container">
+    <h3>Órdenes de entrega</h3>
+    <hr>
+    <div class="panel panel-default mb-2">
+        <div class="panel-heading h6">Acciones </div>
+        <div class="panel-body">
+            <ul class="list-group list-group-horizontal">
+                <li class="list-group-item">
+                    <button class="btn text-success">Consolidar orden</button>
+                </li>
+                <li class="list-group-item">
+                    <button class="btn text-warning">Finalizar orden</button>
+                </li>
+                <li class="list-group-item">
+                    <button class="btn text-danger">Anular orden</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="panel panel-default mb-4">
+        <div class="panel-heading h6">Viaje </div>
+        <div class="panel-body">
+            <ul class="list-group list-group-horizontal">
+                <li class="list-group-item"><a class="nav-link text-success" href="#">Iniciar viaje</a></li>
+                <li class="list-group-item"><a class="nav-link text-warning" href="#">Finalizar viaje</a></li>
+                <li class="list-group-item">
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn text-warning" data-toggle="modal" data-target="#modalSeguimiento">
+                        Insertar seguimiento
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="modalSeguimiento" tabindex="-1" role="dialog" aria-labelledby="modalSeguimientoLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalSeguimientoLabel">Seguimiento</h5>
+                    <button type="button" class="btn close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="lat">Latitud</label>
+                        <input type="number" name="lat" id="lat" [(ngModel)]="latSeguimiento" class="form-control">
+                        <br>
+                        <label for="lon">Longitud</label>
+                        <input type="number" name="lon" id="lon" [(ngModel)]="lonSeguimiento" class="form-control">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-success btn-block" (click)="iniciarSeguimiento()">Insertar
+                        seguimiento</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <table class="table table-striped table-hover table-light table-bordered table-responsive">
+        <thead>
+            <tr>
+                <th class="font-weight-bold">Id Orden Entrega</th>
+                <th>Cliente</th>
+                <th>Teléfono</th>
+                <th>Ubicación</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ordenEntrega.id}}</td>
+                <td>{{ordenEntrega.nombreCliente}}</td>
+                <td>{{ordenEntrega.telefono}}</td>
+                <td>{{ordenEntrega.latitudDestino}}, {{ordenEntrega.longitudDestino}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <hr>
+    <h4>Items</h4>
+    <table class="table table-hover table-light table-bordered table-responsive">
+        <thead>
+            <tr>
+                <th class="font-weight-bold">#</th>
+                <th>Codigo</th>
+                <th>Descripcion</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of ordenEntrega.items; let i = index">
+                <td>{{i+1}}</td>
+                <td>{{item.Codigo}}</td>
+                <td>{{item.Descripcion}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

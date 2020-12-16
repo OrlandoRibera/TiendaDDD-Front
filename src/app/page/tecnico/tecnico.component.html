@@ -1,0 +1,24 @@
+<app-header></app-header>
+<div class="container">
+    <h3>Técnicos</h3>
+    <table class="table table-striped table-hover table-light table-bordered table-responsive">
+        <thead>
+            <tr>
+                <th class="font-weight-bold">Id del técnico</th>
+                <th>Nombre</th>
+                <th>Teléfono</th>
+                <th>Correo Electrónico</th>
+                <th>CI</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let tecnico of tecnicos">
+                <td>{{tecnico.technicianId}}</td>
+                <td>{{tecnico.name}} {{tecnico.lastname}}</td>
+                <td>{{tecnico.phone}}</td>
+                <td>{{tecnico.email}}</td>
+                <td>{{tecnico.ci}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

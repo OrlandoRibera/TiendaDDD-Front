@@ -1,0 +1,24 @@
+<app-header></app-header>
+<div class="container">
+    <h3>Órdenes de entrega</h3>
+    <table class="table table-striped table-hover table-light table-bordered table-responsive">
+        <thead>
+            <tr>
+                <th class="font-weight-bold">Id Orden Entrega</th>
+                <th>Cliente</th>
+                <th>Teléfono</th>
+                <th>Ubicación</th>
+                <th>Opciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let ordenEntrega of ordenEntregas">
+                <td>{{ordenEntrega.id}}</td>
+                <td>{{ordenEntrega.nombreCliente}}</td>
+                <td>{{ordenEntrega.telefono}}</td>
+                <td>{{ordenEntrega.latitudDestino}}, {{ordenEntrega.longitudDestino}}</td>
+                <td><a [routerLink]="[ '/orden-entrega', ordenEntrega.id ]">Ver detalles</a></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

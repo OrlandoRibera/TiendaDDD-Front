@@ -1,0 +1,24 @@
+<app-header></app-header>
+<div class="container">
+    <h3>Formularios de cita</h3>
+    *Para añadir un formulario de cita, diríjase a <a [routerLink]="[ '/cita' ]">citas</a>
+    <hr>
+    <table class="table table-striped table-hover table-light table-bordered table-responsive">
+        <thead>
+            <tr>
+                <th class="font-weight-bold"># Id formulario</th>
+                <th>Detalle</th>
+                <th>Fecha de creación</th>
+                <th>Cita Id</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let form of formTrabajos">
+                <td>{{form.jobFormId}}</td>
+                <td>{{form.detail}}</td>
+                <td>{{form.date}}</td>
+                <td>{{form.appointment.appointmentId}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

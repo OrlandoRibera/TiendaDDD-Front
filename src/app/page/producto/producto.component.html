@@ -1,0 +1,28 @@
+<app-header></app-header>
+<div class="container">
+    <h3>Productos</h3>
+    <table class="table table-striped table-hover table-light table-bordered table-responsive">
+        <thead>
+            <tr>
+                <th class="font-weight-bold">Id Producto (Clic para copiar)</th>
+                <th>Marca</th>
+                <th>Nombre</th>
+                <th>Precio</th>
+                <th>Opciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let producto of productos">
+                <td ngxClipboard [cbContent]="producto.id" (click)="copied_message()" class="hover">{{producto.id}}</td>
+                <td>{{producto.productBrand}}</td>
+                <td>{{producto.productName}}</td>
+                <td>{{producto.productPrice}} Bs</td>
+                <td>
+                    <button ngxClipboard [cbContent]="producto.id" (click)="copied_message()" class="btn btn-link">
+                        Copiar Id
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
